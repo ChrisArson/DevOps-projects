@@ -2,7 +2,7 @@ version: "3.9"
 services:
         jenkins:
                 container_name: jenkins
-                image: jenkins/jenkins
+                image: jenkins_docker
                 build:
                         context: .
                         dockerfile: Dockerfile-Jenkins

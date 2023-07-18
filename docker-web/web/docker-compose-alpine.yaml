@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+        app:
+                image: alpine-web
+                container_name: alpine-web
+                build:
+                        context: Dockerfile-Alpine
+        web:
+                container_name: web
+                image: ubuntu/apache2
+                ports:
+                        - "80:80"
+                volumes:
+                        - $PWD/data/webfiles:/var/www/html

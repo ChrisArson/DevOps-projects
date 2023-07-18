@@ -1,0 +1,8 @@
+FROM alpine:latest
+RUN apk update && apk add git unzip openssh
+RUN rm -rf /tmp/webfiles && mkdir -p /root/.ssh /tmp/webfiles
+COPY id_rsa /root/.ssh/id_rsa
+RUN chmod 600 /root/.ssh/id_rsa
+RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config && ssh-keyscan github.com >> /root/.ssh/known_hosts
+RUN git clone git@github.com:ChrisArson/website-data.git /tmp/webfiles
+RUN unzip /tmp/webfiles/data.zip -d /mnt/webfiles

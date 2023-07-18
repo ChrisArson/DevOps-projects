@@ -3,11 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh '''
-                docker compose -f web/docker-compose-alpine.yaml up -d --force-recreate
-                docker cp alpine-web:/mnt/webfiles/data data/
-                mv data/data data/webfiles
-                '''
+                sh './scripts/build.sh'
             }
         }
         stage('Backup') {

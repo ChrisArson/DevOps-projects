@@ -1,9 +1,9 @@
 #!/bin/bash
 
-hosts="data/ip.txt"
-priv_key="data/id_rsa"
-script="scripts/vm/init.sh"
-webfiles="data/webfiles.tar.gz"
+hosts="$PWD/jenkins-docker-apache/data/ip.txt"
+priv_key="$PWD/jenkins-docker-apache/data/id_rsa"
+script="$PWD/jenkins-docker-apache/scripts/vm/init.sh"
+webfiles="$PWD/jenkins-docker-apache/data/webfiles.tar.gz"
 
 tar -czvf "$webfiles" data/webfiles
 

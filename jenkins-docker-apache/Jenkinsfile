@@ -8,12 +8,12 @@ pipeline {
         }
         stage('Backup') {
             steps {
-                sh './jenkins-docker-apache/scripts/backup_vm.sh'
+                sh 'jenkins-docker-apache/scripts/backup_vm.sh'
             }
         }
         stage('Deploy'){
 	       steps {
-                sh './jenkins-docker-apache/scripts/deploy_vm.sh'
+                sh 'jenkins-docker-apache/scripts/deploy_vm.sh'
 	       }
 	   }
     }

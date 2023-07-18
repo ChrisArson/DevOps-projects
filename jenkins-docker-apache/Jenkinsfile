@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh './scripts/build.sh'
+                sh './jenkins-docker-apache/scripts/build.sh'
             }
         }
         stage('Backup') {

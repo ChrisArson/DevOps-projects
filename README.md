@@ -6,7 +6,7 @@ This repository contains some of the projects I've been preparing while learning
 ## 1. Jenkins Apache Docker
 ### Introduction
 
----
+
 
 Project directory: jenkins-apache-docker/
 
@@ -15,7 +15,7 @@ This project provides a practical example of using Jenkins to automate the build
 ---
 ### Directory structure
 
----
+
 
 1. data/
 

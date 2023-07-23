@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#Check if apache2 is installed, if not then install it
 dpkg -s apache2 > /dev/null
 if [ $? -ne 0 ]
 then
@@ -10,9 +11,11 @@ else
 	echo "Apache2 is already installed"
 fi
 
+#Extract and copy webfiles to desired dir
 tar -xzvf /tmp/webfiles.tar.gz -C /tmp
 sudo mv -f /tmp/data/webfiles/* /var/www/html
 
+#Check if apache2 process is running, if not start it
 if [ -f /var/run/apache2/apache2.pid ]
 then
         echo "Apache2 proccess is running"
@@ -23,6 +26,6 @@ else
         then
                 echo "Process started succesfully"
         else
-                echo "Process starting failed, contact the admin"
+                echo "Process starting failed"
         fi
 fi

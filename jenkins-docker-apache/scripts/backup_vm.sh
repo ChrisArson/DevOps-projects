@@ -6,6 +6,7 @@ script="$PWD/jenkins-docker-apache/scripts/vm/backup.sh"
 
 chmod 600 "$priv_key"
 
+#Copy backup script and execute it on VMs
 while IFS= read -r ip_address
 do
     scp -i "$priv_key" "$script" "vagrant@$ip_address:/tmp"

@@ -11,6 +11,7 @@ backup_file="${backup_name}_${timestamp}.tar.gz"
 
 sudo mkdir -p "$backup_dir" "$source_dir"
 
+#Check if there is webfiles or logs
 if [ -d "$source_webfiles" ] || [ -d "$source_logs" ]; then
 
 	if [ -d "$source_webfiles" ]; then
@@ -25,6 +26,7 @@ if [ -d "$source_webfiles" ] || [ -d "$source_logs" ]; then
 	sudo rm -rf "$source_dir"
 fi
 
+#Check the quantity of backups, if limit is reached then delete the oldest backup
 backup_count=$(ls -1 "$backup_dir" | grep -c "$backup_name")
 if [[ $backup_count -gt $max_backups ]]; then
   backup_old=($(ls -ltr --time=atime "$backup_dir" | grep "$backup_name" | awk '{print $9}' | head -n 1))

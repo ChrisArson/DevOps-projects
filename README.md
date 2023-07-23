@@ -11,8 +11,8 @@ This project provides a practical example of using Jenkins to automate the build
 
 ### Directory structure
 ---
+------
 
-----
 1. data/
 
 Folder that contains file with ip adresses of machines with apache2 and RSA key which is outside version control. There is also stored downloaded website files which are used on vms and container with apache2 server.

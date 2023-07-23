@@ -31,11 +31,11 @@ This folder contains all the scripts, that are used in this project.
 
 build.sh - it is creating/recreating containers with alpine and apache2 server. It also copying web files from exited alpine container to the host machine.
 
-deploy.sh - using file with ip addresses it is copying initialization script and web files from host machine to the virtual machines.
+backup_vm.sh && deploy_vm.sh - using file with ip addresses it is copying backup/initialization script and web files from host machine to vms and runs the scripts on them.
 
 vm/init.sh - script that is running after deploy on virtual machines. It checks if apache2 server is installed, then if apache2 service is running. It also extract and move web files to the desired directories.
 
----
-
 vm/backup.sh - script used to create backup of web files and logs from apache2 server before every deploy. It is checking the amount of backups and if the limit is reached it deleted the oldest backup.
+
+---
 

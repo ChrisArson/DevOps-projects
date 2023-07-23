@@ -11,8 +11,6 @@ This project provides a practical example of using Jenkins to automate the build
 
 ### Directory structure
 ---
-------
-======
 
 1. data/
 

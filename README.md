@@ -1,5 +1,5 @@
 # DevOps-projects
-This repository contains some of the projects I've been preparing while learning DevOps skills and tools
+This repository contains some of the projects I've been preparing while learning/training DevOps skills and tools
 
 ---
 

@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'jenkins-docker-maven/scripts/maven.sh'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Push'){
+	       steps {
+                sh 'jenkins-docker-maven/scripts/push.sh $BUILD_NUMBER'
+	       }
+	   }
+    }
+}

@@ -1,0 +1,6 @@
+download na hosta
+tutaj build
+test
+deploy na kontener
+push obrazu na docker hub
+pobranie obrazu i odpalenie na innej maszynie

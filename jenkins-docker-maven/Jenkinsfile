@@ -30,10 +30,11 @@ pipeline {
             steps {
                 sh 'jenkins-docker-maven/scripts/maven.sh mvn -B -DskipTests clean package'
             }
-            post
+            post {
                 success {
                     archiveArtifacts artifacts: 'jenkins-docker-maven/data/*.jar', fingerprint: true
                 }
+	    }
         }
         stage('Image Build'){
                steps {

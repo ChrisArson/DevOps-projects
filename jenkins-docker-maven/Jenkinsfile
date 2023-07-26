@@ -11,9 +11,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                dir('jenkins-docker-maven/app'){
-                    sh 'jenkins-docker-maven/scripts/maven.sh test'
-                }
+                sh 'jenkins-docker-maven/scripts/maven.sh test'
             }
         }
         stage('App build') {

@@ -1,23 +1,28 @@
 pipeline {
     agent any
+    enviroment {
+        D_USERNAME = credentials('DOCKER_USERNAME')
+        D_PSSWD = credentials('DOCKER_PASSWORD')
+    }
     tools {
         maven 'MAVEN386'
     }
     stages {
         stage('App pull') {
             steps {
-                dir('jenkins-docker-maven/scripts'){
-                    sh 'pull-app.sh'
-                }
+                sh 'jenkins-docker-maven/scripts/pull-app.sh'
             }
         }
         stage('Test') {
             steps {
-                dir('jenkins-docker-maven/scripts'){
-                    sh '''
-                        maven.sh mvn clean
-                        maven.sh mvn test
-                        '''
+                sh '''
+                    jenkins-docker-maven/scripts/maven.sh mvn clean
+                    jenkins-docker-maven/scripts/maven.sh mvn test
+                    '''
+            }
+            post {
+                always {
+                    junit 'jenkins-docker-maven/app/target/surefire-reports/*.xml'
                 }
             }
         }
@@ -25,6 +30,10 @@ pipeline {
             steps {
                 sh 'jenkins-docker-maven/scripts/maven.sh mvn -B -DskipTests clean package'
             }
+            post
+                success {
+                    archiveArtifacts artifacts: 'jenkins-docker-maven/data/*.jar', fingerprint: true
+                }
         }
         stage('Image Build'){
                steps {
@@ -33,7 +42,7 @@ pipeline {
         }
         stage('Image Push'){
                steps {
-                sh 'jenkins-docker-maven/scripts/push.sh $BUILD_NUMBER'
+                sh 'jenkins-docker-maven/scripts/push-image.sh $BUILD_NUMBER $D_USERNAME $D_PSSWD'
             }
         }
     }

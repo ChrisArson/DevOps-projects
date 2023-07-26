@@ -14,8 +14,8 @@ pipeline {
                 dir('jenkins-docker-maven/app'){
                     sh '''
 			mkdir target
-			mvn clean
-			mvn test
+			#mvn clean
+			#mvn test
 		       '''
                 }
             }

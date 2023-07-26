@@ -13,6 +13,7 @@ pipeline {
             steps {
                 dir('jenkins-docker-maven/app'){
                     sh '''
+			mkdir target
 			mvn clean
 			mvn test
 		       '''

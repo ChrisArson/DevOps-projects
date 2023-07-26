@@ -6,15 +6,19 @@ pipeline {
     stages {
         stage('App pull') {
             steps {
-                sh 'jenkins-docker-maven/scripts/pull-app.sh'
+                dir('jenkins-docker-maven/scripts'){
+                    sh 'pull-app.sh'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh '''
-			jenkins-docker-maven/scripts/maven.sh mvn clean
-			jenkins-docker-maven/scripts/maven.sh mvn test
-		   '''
+                dir('jenkins-docker-maven/scripts'){
+                    sh '''
+                        maven.sh mvn clean
+                        maven.sh mvn test
+                        '''
+                }
             }
         }
         stage('App build') {

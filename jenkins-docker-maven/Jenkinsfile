@@ -12,18 +12,13 @@ pipeline {
         stage('Test') {
             steps {
                 dir('jenkins-docker-maven/app'){
-                    sh '''
-			mkdir target
-			chown -R 1000:1000 target
-			#mvn clean
-			#mvn test
-		       '''
+                    sh 'jenkins-docker-maven/scripts/maven.sh test'
                 }
             }
         }
         stage('App build') {
             steps {
-                sh 'jenkins-docker-maven/scripts/build-app.sh'
+                sh 'jenkins-docker-maven/scripts/maven.sh mvn -B -DskipTests clean package'
             }
         }
         stage('Image Build'){

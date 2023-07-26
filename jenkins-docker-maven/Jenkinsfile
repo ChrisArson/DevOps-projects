@@ -18,7 +18,7 @@ pipeline {
         }
         stage('App build') {
             steps {
-                sh 'jenkins-docker-maven/scripts/maven.sh'
+                sh 'jenkins-docker-maven/scripts/build-app.sh'
             }
         }
         stage('Image Build'){

@@ -11,7 +11,10 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'jenkins-docker-maven/scripts/maven.sh mvn test'
+                sh '''
+			jenkins-docker-maven/scripts/maven.sh mvn clean
+			jenkins-docker-maven/scripts/maven.sh mvn test
+		   '''
             }
         }
         stage('App build') {

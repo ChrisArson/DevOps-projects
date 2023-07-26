@@ -12,7 +12,10 @@ pipeline {
         stage('Test') {
             steps {
                 dir('jenkins-docker-maven/app'){
-                    sh 'mvn test'
+                    sh '''
+			mvn clean
+			mvn test
+		       '''
                 }
             }
         }

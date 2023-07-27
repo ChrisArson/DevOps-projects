@@ -3,6 +3,7 @@ pipeline {
     environment {
         D_USERNAME = credentials('DOCKER_USERNAME')
         D_PSSWD = credentials('DOCKER_PASSWORD')
+	SSH_CREDENTIALS = credentials('ssh-remote20')
     }
     tools {
         maven 'MAVEN386'
@@ -48,7 +49,11 @@ pipeline {
         }
 	stage('Deploy'){
 		steps {
-		sh 'jenkins-docker-maven/scripts/deploy.sh'
+			script {
+                    	sshagent(credentials: [ssh(credentialsId: SSH_CREDENTIALS)]) {
+                        	sh 'scp "jenkins-docker-maven/scripts/vm/init.sh" vagrant@192.168.77.20:/tmp'
+                    }
+		}
 	    }
 	}
     }

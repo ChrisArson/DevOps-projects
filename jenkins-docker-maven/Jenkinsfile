@@ -47,7 +47,9 @@ pipeline {
             }
         }
 	stage('Deploy'){
+		steps {
 		sh 'jenkins-docker-maven/scripts/deploy.sh $BUILD_NUMBER $D_USERNAME $D_PSSWD'
+	    }
 	}
     }
 }

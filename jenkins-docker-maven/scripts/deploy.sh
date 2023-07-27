@@ -7,7 +7,7 @@ chmod 600 "$priv_key"
 
 
 #scp -i "$priv_key" "$script" "vagrant@192.168.77.20:/tmp"
-ssh -v -i "$priv_key" "vagrant@192.168.77.20"
+ssh -A -v -i "$priv_key" "vagrant@192.168.77.20"
 #Copy script, webfiles and execute script on VMs
 #while IFS= read -r ip_address
 #do

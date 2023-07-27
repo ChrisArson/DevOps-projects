@@ -51,7 +51,10 @@ pipeline {
 		steps {
 			script {
                     	sshagent(credentials: ['ssh-remote20']) {
-                        	sh 'scp "jenkins-docker-maven/scripts/vm/init.sh" vagrant@192.168.77.20:/tmp'
+				sh '''
+                                        scp "jenkins-docker-maven/scripts/vm/init.sh" vagrant@192.168.77.20:/tmp
+                                        ssh -n "vagrant@$ip_address" "/tmp/init.sh $1 $2 $3" < /dev/null
+                                   '''
                     }
 		}
 	    }

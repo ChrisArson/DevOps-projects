@@ -50,7 +50,7 @@ pipeline {
 	stage('Deploy'){
 		steps {
 			script {
-                    	sshagent(credentials: [ssh(credentialsId: SSH_CREDENTIALS)]) {
+                    	sshagent(credentials: ['ssh-remote20']) {
                         	sh 'scp "jenkins-docker-maven/scripts/vm/init.sh" vagrant@192.168.77.20:/tmp'
                     }
 		}

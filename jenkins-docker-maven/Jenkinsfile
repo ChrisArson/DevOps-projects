@@ -46,5 +46,8 @@ pipeline {
                 sh 'jenkins-docker-maven/scripts/push-image.sh $BUILD_NUMBER $D_USERNAME $D_PSSWD'
             }
         }
+	stage('Deploy'){
+		sh 'jenkins-docker-maven/scripts/deploy.sh $BUILD_NUMBER $D_USERNAME $D_PSSWD'
+	}
     }
 }

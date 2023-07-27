@@ -31,6 +31,7 @@ pipeline {
             steps {
                 sh '''
 			jenkins-docker-maven/scripts/maven.sh mvn -B -DskipTests clean package
+			cp -r $PWD/jenkins-docker-maven/app/target/*.jar $PWD/jenkins-docker-maven/data
 		   '''
             }
             post {
@@ -43,7 +44,6 @@ pipeline {
                steps {
                 sh '''
 			cp -r $PWD/jenkins-docker-maven/app/target/*.jar $PWD/jenkins-docker-maven/data
-			jenkins-docker-maven/scripts/build-image.sh
 		   '''
             }
         }

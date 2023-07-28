@@ -4,14 +4,14 @@ This repository contains some of the projects I've been preparing while learning
 ---
 
 ## 1. Jenkins Apache Docker
-### Introduction
+### 1.1 Introduction
 
 Project directory: `jenkins-apache-docker/`
 
 This project provides a practical example of using Jenkins to automate the build and deployment of an Apache web server within a Docker container. In final result scripts will download, extract and deploy webfiles data to two virtual machines and one container with apache2 server. It is built on the contenaraized Jenkins image with Docker installed on it. The Jenkins data dir is attached to the host volume for backup purpose, but its outside the version control.
 
 ---
-### Directory structure
+### 1.2 Directory structure
 
 1. data/
 
@@ -36,11 +36,13 @@ vm/backup.sh - script used to create backup of web files and logs from apache2 s
 ---
 
 ## 2. Jenkins Apache Maven
-### Introduction
+### 2.1 Introduction
 
-Project directory: ``jenkins-docker-maven/``
+Project directory: `jenkins-docker-maven/`
+
+### 2.2 Directory structure
 
 
-### Flow of execution
+### 2.3 Flow of execution
 
 

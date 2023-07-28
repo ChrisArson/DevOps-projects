@@ -3,14 +3,18 @@ This repository contains some of the projects I've been preparing while learning
 
 ## Table of Contents
 - [1. Jenkins Apache Docker](#jda)
-- [1.1 Introduction](#jda-introduction)
-- [1.2 Directory structure](#jda-dir-str)
+- [1.1 Introduction](#jda-intro)
+- [1.2 Directory structure](#jda-dir)
 - [1.3 Flow of execution](#jda-flow)
+- [2. Jenkins Apache Maven](#jdm)
+- [2.1 Introduction](#jdm-intro)
+- [2.2 Directory structure](#jdm-dir)
+- [2.3 Flow of execution](#jdm-flow)
 
 ---
 <a name="jda"></a>
 ## 1. Jenkins Docker Apache
-<a name="jda-introduction"></a>
+<a name="jda-intro"></a>
 ### 1.1 Introduction
 
 Project directory: `jenkins-docker-apache/`
@@ -18,7 +22,7 @@ Project directory: `jenkins-docker-apache/`
 This project provides a practical example of using Jenkins to automate the build and deployment of an Apache web server within a Docker container. In final result scripts will download, extract and deploy webfiles data to two virtual machines and one container with apache2 server. It is built on the contenaraized Jenkins image with Docker installed on it. The Jenkins data dir is attached to the host volume for backup purpose, but its outside the version control.
 
 ---
-<a name="jda-dir-str"></a>
+<a name="jda-dir"></a>
 ### 1.2 Directory structure
 
 - `jenkins-docker-apache/`
@@ -56,26 +60,33 @@ Script `backup_vm.sh` copies and executes `vm/backup.sh` script throught ssh on 
 Script `deploy_vm.sh` copies and executes `vm/init.sh` on virtual machines using the same ip adresses as in Backup stage. Additionaly its also copies prepared before new web files. Script `init.sh` at first is checks if the Apache2 web server is installed, if not it installing it. After that script moves webfiles to the desired location and checks the status of Apache2 service, if the service is not running its make process start.
 
 ---
-
+<a name="jdm"></a>
 ## 2. Jenkins Apache Maven
+<a name="jdm-intro"></a>
 ### 2.1 Introduction
 
-This project provides a practical example of using Jenkins to automate the build and deployment of an Apache web server within a Docker container. In final result scripts will download, extract and deploy webfiles data to two virtual machines and one container with apache2 server. It is built on the contenaraized Jenkins image with Docker installed on it. The Jenkins data dir is attached to the host volume for backup purpose, but its outside the version control.
+This project provides a practical example of using Jenkins to automate the tests, build and deployment of image with java application within a Docker container. As a result there will be image on dockerhub with tested and built java application. Java application that I used in this project comes from https://github.com/jenkins-docs/simple-java-maven-app. 
 
-
-
-Java application that I used in this project comes from `https://github.com/jenkins-docs/simple-java-maven-app`
+Project is built on the contenaraized Jenkins image with Docker installed on it. The Jenkins data dir is attached to the host volume for backup purpose, but its outside the version control.
 
 Project directory: `jenkins-docker-maven/`
 
+<a name="jdm-dir"></a>
 ### 2.2 Directory structure
 
 - `jenkinds-docker-maven/
 
+Main directory that contains all subdirectories, docker/docker-compose and Jenkins pipeline files. In Dockerfile-Jenkins there are instructions to install docker and docker compose on jenkins/jenkins image. Docker compose file contains configuration to build container with Jenkins based on Dockerfile.
+
 - `jenkinds-docker-maven/data/`
+
+Folder containing Dockerfile and docker compose used in building an image with Java Runtime Environment.
 
 - `jenkinds-docker-maven/scripts`
 
+This folder contains all the scripts, that are used in this project. All of them are described in [2.3 Flow of execution](#jdm-flow) section.
+
+<a name="jdm-flow"></a>
 ### 2.3 Flow of execution
 
 [Docker hub](https://hub.docker.com/repository/docker/chrisarson/jdm-project/general)

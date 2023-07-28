@@ -38,6 +38,8 @@ vm/backup.sh - script used to create backup of web files and logs from apache2 s
 ## 2. Jenkins Apache Maven
 ### 2.1 Introduction
 
+Java application that I used in this project comes from `https://github.com/jenkins-docs/simple-java-maven-app`
+
 Project directory: `jenkins-docker-maven/`
 
 ### 2.2 Directory structure

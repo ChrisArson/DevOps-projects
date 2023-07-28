@@ -47,5 +47,5 @@ Project directory: `jenkins-docker-maven/`
 
 ### 2.3 Flow of execution
 
-[this](https://hub.docker.com/repository/docker/chrisarson/jdm-project/general)
+[Docker hub](https://hub.docker.com/repository/docker/chrisarson/jdm-project/general)
 

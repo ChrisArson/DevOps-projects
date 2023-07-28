@@ -44,12 +44,15 @@ This folder contains all the scripts, that are used in this project. All of them
 ### 1.3 Flow of execution
 
 - Stage "Build"
+
 In first step script `build.sh` create and starts two containers, alpine with instructions from Dockerfile-Alpine and Apache2 container which will be web server. Dockefile-Alpine instructions is installing necessary tools, copying RSA key from host machine to get access to private repository on github, downloading and extracting downloaded web files. After that, the alpine container will exited and script is copying downloaded web files from exited container to directory in host machine that is mounted to Apache2 web server.
 
 - Stage "Backup"
+
 Script `backup_vm.sh` copies and executes `vm/backup.sh` script throught ssh on two virtual machines. Ip adresses of machines are stored in `data/ip.txt`. The copied script `vm/backup.sh` checks for previous webfiles and logs. If they exist, its making backup of them and also checks that if there are more than maximum number of backups it deletes the last one.
 
 - Stage "Deploy"
+
 Script `deploy_vm.sh` copies and executes `vm/init.sh` on virtual machines using the same ip adresses as in Backup stage. Additionaly its also copies prepared before new web files. Script `init.sh` at first is checks if the Apache2 web server is installed, if not it installing it. After that script moves webfiles to the desired location and checks the status of Apache2 service, if the service is not running its make process start.
 
 ---

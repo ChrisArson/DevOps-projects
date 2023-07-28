@@ -71,6 +71,8 @@ Project is built on the contenaraized Jenkins image with Docker installed on it.
 
 Project directory: `jenkins-docker-maven/`
 
+---
+
 <a name="jdm-dir"></a>
 ### 2.2 Directory structure
 
@@ -89,6 +91,8 @@ Directory that contains java app files
 - `jenkinds-docker-maven/scripts`
 
 This folder contains all the scripts, that are used in this project. All of them are described in [2.3 Flow of execution](#jdm-flow) section.
+
+---
 
 <a name="jdm-flow"></a>
 ### 2.3 Flow of execution

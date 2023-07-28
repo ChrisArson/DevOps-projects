@@ -82,6 +82,10 @@ Main directory that contains all subdirectories, docker/docker-compose and Jenki
 
 Folder containing Dockerfile and docker compose used in building an image with Java Runtime Environment.
 
+- `jenkinds-docker-maven/app/`
+
+Directory that contains java app files
+
 - `jenkinds-docker-maven/scripts`
 
 This folder contains all the scripts, that are used in this project. All of them are described in [2.3 Flow of execution](#jdm-flow) section.
@@ -89,5 +93,26 @@ This folder contains all the scripts, that are used in this project. All of them
 <a name="jdm-flow"></a>
 ### 2.3 Flow of execution
 
-[Docker hub](https://hub.docker.com/repository/docker/chrisarson/jdm-project/general)
+- Stage "App pull"
 
+The `pull-app.sh` script clones the repository with java app and copies `pom.xml` and `src/` to `app/`. After that dir with repo is deleting.
+
+- Stage "Test"
+
+Application is tested with `maven.sh`. This script is creating a docker container with maven image on it and it runs the given command, in this case is `mvn clean` and `mvn test`. To the container is mounted dir with pulled before files. In post section, JUnit collects and displays the test results after completed `Test` stage.
+
+- Stage "App build"
+
+Using the same `maven.sh` script the application is building and after that artifact is copied to `data/` dir for image building purpose. In the successful post section Jenkins is achiving the artefact. Also using S3 publisher plugin the artefact is copied to S3 Bucket.
+
+- Stage "Image Build"
+
+Using docker compose an image based on `Dockerfile-Java` is created. The image is creating and copying built artifact.
+
+- Stage "Image Push"
+
+Script `push-image.sh` changes the default tag to number of build that comes from environment variable in Jenkins. After that using credentials, machine is logging in docker account and in result the image with application on it is pushed to [Docker hub](https://hub.docker.com/repository/docker/chrisarson/jdm-project/general)
+
+- Stage "Deploy"
+
+Deployment is done by using plugin SSH Agent. Script `vm/init.sh` is copied and executed through ssh. The script pulls and runs the container with the latest image from docker hub.

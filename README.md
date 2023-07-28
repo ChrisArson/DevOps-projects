@@ -99,7 +99,7 @@ The `pull-app.sh` script clones the repository with java app and copies `pom.xml
 
 - Stage "Test"
 
-Application is tested with `maven.sh`. This script is creating a docker container with maven image on it and it runs the given command, in this case is `mvn clean` and `mvn test`. To the container is mounted dir with pulled before files. In post section, JUnit collects and displays the test results after completed `Test` stage.
+Application is tested with `maven.sh`. This script is creating a docker container with maven image on it and it runs the given command, in this case is `mvn clean` and `mvn test`. Dircetory with files pulled before is mounted to the container. In post section, JUnit collects and displays the test results after completed `Test` stage.
 
 - Stage "App build"
 

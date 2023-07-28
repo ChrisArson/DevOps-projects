@@ -74,7 +74,7 @@ Project directory: `jenkins-docker-maven/`
 <a name="jdm-dir"></a>
 ### 2.2 Directory structure
 
-- `jenkinds-docker-maven/
+- `jenkinds-docker-maven/`
 
 Main directory that contains all subdirectories, docker/docker-compose and Jenkins pipeline files. In Dockerfile-Jenkins there are instructions to install docker and docker compose on jenkins/jenkins image. Docker compose file contains configuration to build container with Jenkins based on Dockerfile.
 

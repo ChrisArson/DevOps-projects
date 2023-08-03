@@ -1,0 +1,28 @@
+- name: Init web VMs
+  hosts: webgrp
+  become: yes
+  gather_facts: yes
+  roles:
+          - role: web_role
+
+- name: Istalling docker on host and remote VM
+  hosts: dockergrp
+  become: yes
+  roles:
+          - role: docker-install
+
+- name: Building image with java app
+  hosts: localgrp
+  become: yes
+  gather_facts: yes
+  roles:
+          - role: image_build
+  vars_files:
+          - /home/vagrant/ansible/aws_credentials.yaml
+
+- name: Creating container with java app on remote VM
+  hosts: containergrp
+  become: yes
+  gather_facts: yes
+  roles:
+          - role: app_deploy 

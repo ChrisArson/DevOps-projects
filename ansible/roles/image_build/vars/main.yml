@@ -1,0 +1,7 @@
+---
+role_dir: /home/vagrant/ansible/roles/image_build
+version_number: 0
+version_string: ans
+repo_url: https://github.com/jenkins-docs/simple-java-maven-app.git
+docker_repo: chrisarson/ans-project
+mvn_image: maven:3.8.6-eclipse-temurin-11-alpine

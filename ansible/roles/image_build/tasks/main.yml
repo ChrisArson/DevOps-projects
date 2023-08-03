@@ -1,0 +1,72 @@
+---
+- name: Git repository clone
+  git:
+          repo: "{{repo_url}}"
+          dest: "{{role_dir}}/files/repo"
+          update: yes
+          clone: yes
+          force: yes
+
+- name: Create dircetory for app files
+  file:
+          path: "{{role_dir}}/files/app"
+          state: directory
+
+- name: Move app files to desired location
+  copy:
+          src: "files/repo/{{item}}"
+          dest: "{{role_dir}}/files/app"
+  loop:
+          - pom.xml
+          - src
+
+- name: Removing repo
+  file:
+          path: "{{role_dir}}/files/repo"
+          state: absent
+
+- name: Test app
+  command: >
+          docker run --rm 
+          -v "{{role_dir}}/files/app":/app 
+          -v /root/.m2/:/root/.m2/ 
+          -w /app 
+          "{{mvn_image}}" mvn test
+
+- name: Build app
+  command: >
+          docker run --rm
+          -v "{{role_dir}}/files/app":/app
+          -v /root/.m2/:/root/.m2/
+          -w /app
+          "{{mvn_image}}" mvn -B -DskipTests clean package
+
+- name: Set image tag
+  set_fact:
+          image_tag: "{{ ansible_date_time.iso8601_basic }}"
+
+- name: Build Docker image
+  docker_image:
+          build:
+                  path: "{{role_dir}}/files"
+          name: "{{docker_repo}}"
+          tag: "{{image_tag}}"
+          push: true
+          source: build
+
+- name: Save version to file
+  copy:
+          content: "{{image_tag}}"
+          dest: "{{role_dir}}/vars/image_version.txt"
+
+- name: Upload artifact to S3 Bucket
+  amazon.aws.s3_object:
+          bucket: kops-state-997
+          src: "{{role_dir}}/files/app/target/my-app-1.0-SNAPSHOT.jar"
+          object: "/ansible/{{ ansible_date_time.iso8601_basic }}.jar"
+          secret_key: "{{aws_secret_key}}"
+          access_key: "{{aws_access_key}}"
+          region: us-east-1
+          mode: put
+  vars:
+          ansible_python_interpreter: /usr/bin/python3

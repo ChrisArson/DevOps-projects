@@ -1,0 +1,21 @@
+---
+- name: Set variable with version image
+  set_fact:
+          image_version: "{{ lookup('file', '/home/vagrant/ansible/roles/image_build/vars/image_version.txt') }}"
+
+- name: Display variable
+  debug:
+          var: image_version
+
+- name: Pull an image
+  docker_image:
+          name: "{{docker_repo}}:{{image_version}}"
+          source: pull
+
+- name: Run a container
+  docker_container:
+          name: "java-{{item}}"
+          image: "{{docker_repo}}:{{image_version}}"
+          recreate: true
+          command: sleep 1h
+  with_sequence: count=4

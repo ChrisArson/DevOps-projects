@@ -1,0 +1,9 @@
+---
+- name: Start httpd and apache2
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+  loop:
+    - httpd
+    - apache2
+  when: "('CentOS' in ansible_distribution and item == 'httpd') or ('Ubuntu' in ansible_distribution and item == 'apache2')"

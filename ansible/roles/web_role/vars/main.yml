@@ -1,0 +1,4 @@
+---
+key_dest_path: /root/.ssh/id_rsa
+git_repo: git@github.com:ChrisArson/website-data.git
+web_dir: /tmp/webfiles

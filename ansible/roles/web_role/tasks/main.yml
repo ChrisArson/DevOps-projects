@@ -1,0 +1,81 @@
+---
+- name: Install tools on Ubuntu
+  apt:
+          name: "{{item}}"
+          state: present
+          update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+  loop:
+          - git
+          - unzip
+          - apache2
+
+- name: Install tools on Centos
+  yum:
+          name: "{{item}}"
+          state: present
+          update_cache: yes
+  when: ansible_distribution == "CentOS"
+  loop:
+          - git
+          - unzip
+          - httpd
+
+- name: Gather facts about services
+  ansible.builtin.service_facts:
+
+- name: Check if httpd is running on CentOS
+  ansible.builtin.service:
+    name: httpd
+    state: started
+  when: "'CentOS' in ansible_distribution"
+  notify: Start httpd and apache2
+
+- name: Check if apache2 is running on Ubuntu
+  ansible.builtin.service:
+    name: apache2
+    state: started
+  when: "'Ubuntu' in ansible_distribution"
+  notify: Start httpd and apache2
+
+- name: Copy RSA Key to VM
+  copy:
+          src: files/id_rsa
+          dest: "{{key_dest_path}}"
+
+- name: Change key permission
+  file:
+          path: "{{key_dest_path}}"
+          mode: "600"
+
+- name: Update known_hosts entry for GitHub
+  known_hosts:
+          name: github.com
+          key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
+          path: /root/.ssh/known_hosts
+          state: present
+
+- name: Clone git repository with webfiles
+  git:
+          repo: "{{git_repo}}"
+          dest: "{{web_dir}}"
+          key_file: /root/.ssh/id_rsa
+          accept_hostkey: yes
+          version: main
+
+- name: Extract webfiles
+  unarchive:
+          src: "{{web_dir}}/data.zip"
+          dest: "{{web_dir}}"
+          remote_src: yes
+
+- name: Move webfiles to http server dir
+  copy:
+          src: "{{web_dir}}/data/index.html"
+          dest: /var/www/html
+          remote_src: yes
+
+- name: Deleting webfiles in tmp
+  file:
+          path: "{{web_dir}}"
+          state: absent

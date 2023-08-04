@@ -30,15 +30,19 @@ This project provides a practical example of using Jenkins to automate the build
 ### 1.2 Directory structure
 
 - `jenkins-docker-apache/`
+ 
 Main directory that contains all subdirectories, docker/docker-compose and Jenkins pipeline files. In Dockerfile-Jenkins there are instructions to install docker and docker compose on jenkins/jenkins image. Docker compose file contains configuration to build container with Jenkins based on Dockerfile.
 
 - `jenkins-docker-apache/data/`
+
 Folder that contains file with ip adresses of machines with apache2 and RSA key which is outside version control. There are also stored downloaded website files which are used on vms and container with apache2 server.
 
 - `jenkins-docker-apache/web/`
+
 Folder that contains Dockerfile and docker-compose file. Dockerfile is based on alpine:latest image and it's only purpouse is to download the newest website data files using RSA key from private repository on github and extract it. Docker compose file contains configuration to build alpine container from Dockerfile and container with apache2 server.
 
 - `jenkins-docker-apache/scripts/`
+
 This folder contains all the scripts, that are used in this project. All of them are described in [1.3 Flow of execution](#jda-flow) section.
 
 ---
@@ -48,12 +52,15 @@ This folder contains all the scripts, that are used in this project. All of them
 ### 1.3 Flow of execution
 
 - Stage "Build"
+
 In first step script `build.sh` create and starts two containers, alpine with instructions from Dockerfile-Alpine and Apache2 container which will be web server. Dockefile-Alpine instructions is installing necessary tools, copying RSA key from host machine to get access to private repository on github, downloading and extracting downloaded web files. After that, the alpine container will exited and script is copying downloaded web files from exited container to directory in host machine that is mounted to Apache2 web server.
 
 - Stage "Backup"
+
 Script `backup_vm.sh` copies and executes `vm/backup.sh` script throught ssh on two virtual machines. Ip adresses of machines are stored in `data/ip.txt`. The copied script `vm/backup.sh` checks for previous webfiles and logs. If they exist, its making backup of them and also checks that if there are more than maximum number of backups it deletes the last one.
 
 - Stage "Deploy"
+
 Script `deploy_vm.sh` copies and executes `vm/init.sh` on virtual machines using the same ip adresses as in Backup stage. Additionaly its also copies prepared before new web files. Script `init.sh` at first is checks if the Apache2 web server is installed, if not it installing it. After that script moves webfiles to the desired location and checks the status of Apache2 service, if the service is not running its make process start.
 
 ---
@@ -74,15 +81,19 @@ Project directory: `jenkins-docker-maven/`
 ### 2.2 Directory structure
 
 - `jenkins-docker-maven/`
+
 Main directory that contains all subdirectories, docker/docker-compose and Jenkins pipeline files. In Dockerfile-Jenkins there are instructions to install docker and docker compose on jenkins/jenkins image. Docker compose file contains configuration to build container with Jenkins based on Dockerfile.
 
 - `jenkins-docker-maven/data/`
+
 Folder containing Dockerfile and docker compose used in building an image with Java Runtime Environment.
 
 - `jenkins-docker-maven/app/`
+
 Directory that contains java app files
 
 - `jenkins-docker-maven/scripts`
+
 This folder contains all the scripts, that are used in this project. All of them are described in [2.3 Flow of execution](#jdm-flow) section.
 
 ---
@@ -91,21 +102,27 @@ This folder contains all the scripts, that are used in this project. All of them
 ### 2.3 Flow of execution
 
 - Stage "App pull"
+
 The `pull-app.sh` script clones the repository with java app and copies `pom.xml` and `src/` to `app/`. After that dir with repo is deleting.
 
 - Stage "Test"
+
 Application is tested with `maven.sh`. This script is creating a docker container with maven image on it and it runs the given command, in this case is `mvn clean` and `mvn test`. Dircetory with files pulled before is mounted to the container. In post section, JUnit collects and displays the test results after completed `Test` stage.
 
 - Stage "App build"
+
 Using the same `maven.sh` script the application is building and after that artifact is copied to `data/` dir for image building purpose. In the successful post section Jenkins is achiving the artefact. Also using S3 publisher plugin the artefact is copied to S3 Bucket.
 
 - Stage "Image Build"
+
 Using docker compose an image based on `Dockerfile-Java` is created. The image is creating and copying built artifact.
 
 - Stage "Image Push"
+
 Script `push-image.sh` changes the default tag to number of build that comes from environment variable in Jenkins. After that using credentials, machine is logging in docker account and in result the image with application on it is pushed to [Docker hub](https://hub.docker.com/r/chrisarson/jdm-project)
 
 - Stage "Deploy"
+
 Deployment is done by using plugin SSH Agent. Script `vm/init.sh` is copied and executed through ssh. The script pulls and runs the container with the latest image from docker hub.
 
 ---
@@ -125,15 +142,19 @@ Project directory: `ansible/`
 ### 3.2 Directory structure
 
 - `ansible/`
+
 Main directory that contains all subdirectories, main playbook, ansible vault with aws credentials and configuration.
 
 - `ansible/invetories`
+
 Folder that contains inventory files.
 
 - `ansible/logs`
+
 Directory with ansible logs.
 
 - `ansible/roles`
+
 Folder with ansible roles. All of them are described in [3.3 Flow of execution](#ans-flow) section.
 
 

@@ -9672,3 +9672,5 @@ Deprecation warnings can be disabled by setting deprecation_warnings=False in an
 2023-08-03 16:27:45,420 p=19992 u=vagrant n=ansible | localhost                  : ok=20   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 2023-08-03 16:27:45,420 p=19992 u=vagrant n=ansible | web01                      : ok=11   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
 2023-08-03 16:27:45,420 p=19992 u=vagrant n=ansible | web02                      : ok=11   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2023-08-04 17:23:27,833 p=25479 u=vagrant n=ansible | - Role docker_install was created successfully
+2023-08-04 17:24:14,532 p=25515 u=vagrant n=ansible | - Role roles/docker_install was created successfully

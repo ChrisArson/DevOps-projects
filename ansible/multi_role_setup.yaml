@@ -9,7 +9,7 @@
   hosts: dockergrp
   become: yes
   roles:
-          - role: docker-install
+          - role: docker_install
 
 - name: Building image with java app
   hosts: localgrp

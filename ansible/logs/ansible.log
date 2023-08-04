@@ -9674,3 +9674,263 @@ Deprecation warnings can be disabled by setting deprecation_warnings=False in an
 2023-08-03 16:27:45,420 p=19992 u=vagrant n=ansible | web02                      : ok=11   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
 2023-08-04 17:23:27,833 p=25479 u=vagrant n=ansible | - Role docker_install was created successfully
 2023-08-04 17:24:14,532 p=25515 u=vagrant n=ansible | - Role roles/docker_install was created successfully
+2023-08-04 17:31:25,091 p=25865 u=vagrant n=ansible | PLAY [Init web VMs] ************************************************************
+2023-08-04 17:31:25,106 p=25865 u=vagrant n=ansible | TASK [Gathering Facts] *********************************************************
+2023-08-04 17:31:26,491 p=25865 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:31:27,028 p=25865 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:31:27,043 p=25865 u=vagrant n=ansible | TASK [web_role : Install tools on Ubuntu] **************************************
+2023-08-04 17:31:27,071 p=25865 u=vagrant n=ansible | skipping: [web02] => (item=git) 
+2023-08-04 17:31:27,076 p=25865 u=vagrant n=ansible | skipping: [web02] => (item=unzip) 
+2023-08-04 17:31:27,077 p=25865 u=vagrant n=ansible | skipping: [web02] => (item=apache2) 
+2023-08-04 17:31:34,086 p=25865 u=vagrant n=ansible | ok: [web01] => (item=git)
+2023-08-04 17:31:36,351 p=25865 u=vagrant n=ansible | ok: [web01] => (item=unzip)
+2023-08-04 17:31:38,552 p=25865 u=vagrant n=ansible | ok: [web01] => (item=apache2)
+2023-08-04 17:31:38,572 p=25865 u=vagrant n=ansible | TASK [web_role : Install tools on Centos] **************************************
+2023-08-04 17:31:38,589 p=25865 u=vagrant n=ansible | skipping: [web01] => (item=git) 
+2023-08-04 17:31:38,594 p=25865 u=vagrant n=ansible | skipping: [web01] => (item=unzip) 
+2023-08-04 17:31:38,595 p=25865 u=vagrant n=ansible | skipping: [web01] => (item=httpd) 
+2023-08-04 17:31:39,411 p=25865 u=vagrant n=ansible | ok: [web02] => (item=git)
+2023-08-04 17:31:40,058 p=25865 u=vagrant n=ansible | ok: [web02] => (item=unzip)
+2023-08-04 17:31:40,692 p=25865 u=vagrant n=ansible | ok: [web02] => (item=httpd)
+2023-08-04 17:31:40,700 p=25865 u=vagrant n=ansible | TASK [web_role : Gather facts about services] **********************************
+2023-08-04 17:31:41,648 p=25865 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:31:43,140 p=25865 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:31:43,154 p=25865 u=vagrant n=ansible | TASK [web_role : Check if httpd is running on CentOS] **************************
+2023-08-04 17:31:43,172 p=25865 u=vagrant n=ansible | skipping: [web01]
+2023-08-04 17:31:43,827 p=25865 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:31:43,841 p=25865 u=vagrant n=ansible | TASK [web_role : Check if apache2 is running on Ubuntu] ************************
+2023-08-04 17:31:43,869 p=25865 u=vagrant n=ansible | skipping: [web02]
+2023-08-04 17:31:44,217 p=25865 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:31:44,232 p=25865 u=vagrant n=ansible | TASK [web_role : Copy RSA Key to VM] *******************************************
+2023-08-04 17:31:44,962 p=25865 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:31:44,977 p=25865 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:31:44,991 p=25865 u=vagrant n=ansible | TASK [web_role : Change key permission] ****************************************
+2023-08-04 17:31:45,249 p=25865 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:31:45,293 p=25865 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:31:45,307 p=25865 u=vagrant n=ansible | TASK [web_role : Update known_hosts entry for GitHub] **************************
+2023-08-04 17:31:46,970 p=25865 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:31:46,979 p=25865 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:31:46,993 p=25865 u=vagrant n=ansible | TASK [web_role : Clone git repository with webfiles] ***************************
+2023-08-04 17:31:48,459 p=25865 u=vagrant n=ansible | fatal: [web01]: FAILED! => {"changed": false, "cmd": "/usr/bin/git ls-remote git@github.com:ChrisArson/website-data.git -h refs/heads/main", "msg": "ERROR: We're doing an SSH key audit.\nReason: unverified automatically (private key found in a public repository)\nPlease visit https://github.com/ChrisArson/website-data/settings/keys/84654508\nto approve this key so we know it's safe.\n\nFingerprint:\nSHA256:0tbeXUKTudmoC9gs10Hz7vVs36Ytv3uTZAWfKvX17dA\n\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.", "rc": 128, "stderr": "ERROR: We're doing an SSH key audit.\nReason: unverified automatically (private key found in a public repository)\nPlease visit https://github.com/ChrisArson/website-data/settings/keys/84654508\nto approve this key so we know it's safe.\n\nFingerprint:\nSHA256:0tbeXUKTudmoC9gs10Hz7vVs36Ytv3uTZAWfKvX17dA\n\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\n", "stderr_lines": ["ERROR: We're doing an SSH key audit.", "Reason: unverified automatically (private key found in a public repository)", "Please visit https://github.com/ChrisArson/website-data/settings/keys/84654508", "to approve this key so we know it's safe.", "", "Fingerprint:", "SHA256:0tbeXUKTudmoC9gs10Hz7vVs36Ytv3uTZAWfKvX17dA", "", "fatal: Could not read from remote repository.", "", "Please make sure you have the correct access rights", "and the repository exists."], "stdout": "", "stdout_lines": []}
+2023-08-04 17:31:48,459 p=25865 u=vagrant n=ansible | fatal: [web02]: FAILED! => {"changed": false, "cmd": "/bin/git ls-remote git@github.com:ChrisArson/website-data.git -h refs/heads/main", "msg": "ERROR: We're doing an SSH key audit.\nReason: unverified automatically (private key found in a public repository)\nPlease visit https://github.com/ChrisArson/website-data/settings/keys/84654508\nto approve this key so we know it's safe.\n\nFingerprint:\nSHA256:0tbeXUKTudmoC9gs10Hz7vVs36Ytv3uTZAWfKvX17dA\n\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.", "rc": 128, "stderr": "ERROR: We're doing an SSH key audit.\nReason: unverified automatically (private key found in a public repository)\nPlease visit https://github.com/ChrisArson/website-data/settings/keys/84654508\nto approve this key so we know it's safe.\n\nFingerprint:\nSHA256:0tbeXUKTudmoC9gs10Hz7vVs36Ytv3uTZAWfKvX17dA\n\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\n", "stderr_lines": ["ERROR: We're doing an SSH key audit.", "Reason: unverified automatically (private key found in a public repository)", "Please visit https://github.com/ChrisArson/website-data/settings/keys/84654508", "to approve this key so we know it's safe.", "", "Fingerprint:", "SHA256:0tbeXUKTudmoC9gs10Hz7vVs36Ytv3uTZAWfKvX17dA", "", "fatal: Could not read from remote repository.", "", "Please make sure you have the correct access rights", "and the repository exists."], "stdout": "", "stdout_lines": []}
+2023-08-04 17:31:48,461 p=25865 u=vagrant n=ansible | PLAY RECAP *********************************************************************
+2023-08-04 17:31:48,461 p=25865 u=vagrant n=ansible | web01                      : ok=7    changed=0    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0   
+2023-08-04 17:31:48,461 p=25865 u=vagrant n=ansible | web02                      : ok=7    changed=0    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0   
+2023-08-04 17:33:50,765 p=26143 u=vagrant n=ansible | PLAY [Init web VMs] ************************************************************
+2023-08-04 17:33:50,776 p=26143 u=vagrant n=ansible | TASK [Gathering Facts] *********************************************************
+2023-08-04 17:33:52,040 p=26143 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:33:53,391 p=26143 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:33:53,407 p=26143 u=vagrant n=ansible | TASK [web_role : Install tools on Ubuntu] **************************************
+2023-08-04 17:33:53,436 p=26143 u=vagrant n=ansible | skipping: [web02] => (item=git) 
+2023-08-04 17:33:53,442 p=26143 u=vagrant n=ansible | skipping: [web02] => (item=unzip) 
+2023-08-04 17:33:53,443 p=26143 u=vagrant n=ansible | skipping: [web02] => (item=apache2) 
+2023-08-04 17:33:55,821 p=26143 u=vagrant n=ansible | ok: [web01] => (item=git)
+2023-08-04 17:33:58,041 p=26143 u=vagrant n=ansible | ok: [web01] => (item=unzip)
+2023-08-04 17:34:00,237 p=26143 u=vagrant n=ansible | ok: [web01] => (item=apache2)
+2023-08-04 17:34:00,247 p=26143 u=vagrant n=ansible | TASK [web_role : Install tools on Centos] **************************************
+2023-08-04 17:34:00,263 p=26143 u=vagrant n=ansible | skipping: [web01] => (item=git) 
+2023-08-04 17:34:00,267 p=26143 u=vagrant n=ansible | skipping: [web01] => (item=unzip) 
+2023-08-04 17:34:00,268 p=26143 u=vagrant n=ansible | skipping: [web01] => (item=httpd) 
+2023-08-04 17:34:01,093 p=26143 u=vagrant n=ansible | ok: [web02] => (item=git)
+2023-08-04 17:34:01,741 p=26143 u=vagrant n=ansible | ok: [web02] => (item=unzip)
+2023-08-04 17:34:02,385 p=26143 u=vagrant n=ansible | ok: [web02] => (item=httpd)
+2023-08-04 17:34:02,394 p=26143 u=vagrant n=ansible | TASK [web_role : Gather facts about services] **********************************
+2023-08-04 17:34:03,356 p=26143 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:34:04,692 p=26143 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:34:04,706 p=26143 u=vagrant n=ansible | TASK [web_role : Check if httpd is running on CentOS] **************************
+2023-08-04 17:34:04,724 p=26143 u=vagrant n=ansible | skipping: [web01]
+2023-08-04 17:34:05,387 p=26143 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:34:05,406 p=26143 u=vagrant n=ansible | TASK [web_role : Check if apache2 is running on Ubuntu] ************************
+2023-08-04 17:34:05,435 p=26143 u=vagrant n=ansible | skipping: [web02]
+2023-08-04 17:34:05,769 p=26143 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:34:05,783 p=26143 u=vagrant n=ansible | TASK [web_role : Copy RSA Key to VM] *******************************************
+2023-08-04 17:34:06,539 p=26143 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:34:06,569 p=26143 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:34:06,584 p=26143 u=vagrant n=ansible | TASK [web_role : Change key permission] ****************************************
+2023-08-04 17:34:06,848 p=26143 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:34:06,886 p=26143 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:34:06,899 p=26143 u=vagrant n=ansible | TASK [web_role : Update known_hosts entry for GitHub] **************************
+2023-08-04 17:34:08,499 p=26143 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:34:08,499 p=26143 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:34:08,514 p=26143 u=vagrant n=ansible | TASK [web_role : Clone git repository with webfiles] ***************************
+2023-08-04 17:34:12,503 p=26143 u=vagrant n=ansible | changed: [web01]
+2023-08-04 17:34:12,672 p=26143 u=vagrant n=ansible | changed: [web02]
+2023-08-04 17:34:12,687 p=26143 u=vagrant n=ansible | TASK [web_role : Extract webfiles] *********************************************
+2023-08-04 17:34:13,394 p=26143 u=vagrant n=ansible | changed: [web02]
+2023-08-04 17:34:13,481 p=26143 u=vagrant n=ansible | changed: [web01]
+2023-08-04 17:34:13,494 p=26143 u=vagrant n=ansible | TASK [web_role : Move webfiles to http server dir] *****************************
+2023-08-04 17:34:13,901 p=26143 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:34:13,915 p=26143 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:34:13,929 p=26143 u=vagrant n=ansible | TASK [web_role : Deleting webfiles in tmp] *************************************
+2023-08-04 17:34:14,192 p=26143 u=vagrant n=ansible | changed: [web01]
+2023-08-04 17:34:14,224 p=26143 u=vagrant n=ansible | changed: [web02]
+2023-08-04 17:34:14,277 p=26143 u=vagrant n=ansible | PLAY [Istalling docker on host and remote VM] **********************************
+2023-08-04 17:34:14,285 p=26143 u=vagrant n=ansible | TASK [Gathering Facts] *********************************************************
+2023-08-04 17:34:15,294 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:16,257 p=26143 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:34:16,273 p=26143 u=vagrant n=ansible | TASK [docker_install : Install aptitude] ***************************************
+2023-08-04 17:34:23,383 p=26143 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:34:27,691 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:27,699 p=26143 u=vagrant n=ansible | TASK [docker_install : Install required system packages] ***********************
+2023-08-04 17:34:30,104 p=26143 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:34:30,117 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:30,126 p=26143 u=vagrant n=ansible | TASK [docker_install : Add Docker GPG apt Key] *********************************
+2023-08-04 17:34:30,828 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:30,854 p=26143 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:34:30,865 p=26143 u=vagrant n=ansible | TASK [docker_install : Add Docker Repository] **********************************
+2023-08-04 17:34:31,458 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:31,486 p=26143 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:34:31,495 p=26143 u=vagrant n=ansible | TASK [docker_install : Update apt and install docker-ce] ***********************
+2023-08-04 17:34:33,833 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:33,845 p=26143 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:34:33,854 p=26143 u=vagrant n=ansible | TASK [docker_install : Create Docker group] ************************************
+2023-08-04 17:34:34,204 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:34,244 p=26143 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:34:34,253 p=26143 u=vagrant n=ansible | TASK [docker_install : Add user to Docker group] *******************************
+2023-08-04 17:34:34,683 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:34,728 p=26143 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:34:34,737 p=26143 u=vagrant n=ansible | TASK [docker_install : Install docker Python library] **************************
+2023-08-04 17:34:36,711 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:36,734 p=26143 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:34:36,817 p=26143 u=vagrant n=ansible | PLAY [Building image with java app] ********************************************
+2023-08-04 17:34:36,845 p=26143 u=vagrant n=ansible | TASK [Gathering Facts] *********************************************************
+2023-08-04 17:34:37,753 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:37,802 p=26143 u=vagrant n=ansible | TASK [image_build : Git repository clone] **************************************
+2023-08-04 17:34:39,280 p=26143 u=vagrant n=ansible | changed: [localhost]
+2023-08-04 17:34:39,305 p=26143 u=vagrant n=ansible | TASK [image_build : Create dircetory for app files] ****************************
+2023-08-04 17:34:39,500 p=26143 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:34:39,525 p=26143 u=vagrant n=ansible | TASK [image_build : Move app files to desired location] ************************
+2023-08-04 17:34:39,573 p=26143 u=vagrant n=ansible | An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2023-08-04 17:34:39,574 p=26143 u=vagrant n=ansible | failed: [localhost] (item=pom.xml) => {"ansible_loop_var": "item", "changed": false, "item": "pom.xml", "msg": "Could not find or access 'files/repo/pom.xml'\nSearched in:\n\t/home/vagrant/DevOps-projects/ansible/roles/image_build/files/files/repo/pom.xml\n\t/home/vagrant/DevOps-projects/ansible/roles/image_build/files/repo/pom.xml\n\t/home/vagrant/DevOps-projects/ansible/roles/image_build/tasks/files/files/repo/pom.xml\n\t/home/vagrant/DevOps-projects/ansible/roles/image_build/tasks/files/repo/pom.xml\n\t/home/vagrant/DevOps-projects/ansible/files/files/repo/pom.xml\n\t/home/vagrant/DevOps-projects/ansible/files/repo/pom.xml on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2023-08-04 17:34:39,594 p=26143 u=vagrant n=ansible | An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2023-08-04 17:34:39,594 p=26143 u=vagrant n=ansible | failed: [localhost] (item=src) => {"ansible_loop_var": "item", "changed": false, "item": "src", "msg": "Could not find or access 'files/repo/src'\nSearched in:\n\t/home/vagrant/DevOps-projects/ansible/roles/image_build/files/files/repo/src\n\t/home/vagrant/DevOps-projects/ansible/roles/image_build/files/repo/src\n\t/home/vagrant/DevOps-projects/ansible/roles/image_build/tasks/files/files/repo/src\n\t/home/vagrant/DevOps-projects/ansible/roles/image_build/tasks/files/repo/src\n\t/home/vagrant/DevOps-projects/ansible/files/files/repo/src\n\t/home/vagrant/DevOps-projects/ansible/files/repo/src on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2023-08-04 17:34:39,599 p=26143 u=vagrant n=ansible | PLAY RECAP *********************************************************************
+2023-08-04 17:34:39,599 p=26143 u=vagrant n=ansible | java01                     : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-08-04 17:34:39,599 p=26143 u=vagrant n=ansible | localhost                  : ok=12   changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-08-04 17:34:39,600 p=26143 u=vagrant n=ansible | web01                      : ok=11   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2023-08-04 17:34:39,600 p=26143 u=vagrant n=ansible | web02                      : ok=11   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2023-08-04 17:38:35,218 p=28951 u=vagrant n=ansible | PLAY [Init web VMs] ************************************************************
+2023-08-04 17:38:35,230 p=28951 u=vagrant n=ansible | TASK [Gathering Facts] *********************************************************
+2023-08-04 17:38:36,524 p=28951 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:38:36,801 p=28951 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:38:36,816 p=28951 u=vagrant n=ansible | TASK [web_role : Install tools on Ubuntu] **************************************
+2023-08-04 17:38:36,848 p=28951 u=vagrant n=ansible | skipping: [web02] => (item=git) 
+2023-08-04 17:38:36,853 p=28951 u=vagrant n=ansible | skipping: [web02] => (item=unzip) 
+2023-08-04 17:38:36,854 p=28951 u=vagrant n=ansible | skipping: [web02] => (item=apache2) 
+2023-08-04 17:38:39,141 p=28951 u=vagrant n=ansible | ok: [web01] => (item=git)
+2023-08-04 17:38:41,370 p=28951 u=vagrant n=ansible | ok: [web01] => (item=unzip)
+2023-08-04 17:38:43,558 p=28951 u=vagrant n=ansible | ok: [web01] => (item=apache2)
+2023-08-04 17:38:43,569 p=28951 u=vagrant n=ansible | TASK [web_role : Install tools on Centos] **************************************
+2023-08-04 17:38:43,587 p=28951 u=vagrant n=ansible | skipping: [web01] => (item=git) 
+2023-08-04 17:38:43,588 p=28951 u=vagrant n=ansible | skipping: [web01] => (item=unzip) 
+2023-08-04 17:38:43,589 p=28951 u=vagrant n=ansible | skipping: [web01] => (item=httpd) 
+2023-08-04 17:38:44,417 p=28951 u=vagrant n=ansible | ok: [web02] => (item=git)
+2023-08-04 17:38:45,056 p=28951 u=vagrant n=ansible | ok: [web02] => (item=unzip)
+2023-08-04 17:38:45,690 p=28951 u=vagrant n=ansible | ok: [web02] => (item=httpd)
+2023-08-04 17:38:45,700 p=28951 u=vagrant n=ansible | TASK [web_role : Gather facts about services] **********************************
+2023-08-04 17:38:46,658 p=28951 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:38:47,982 p=28951 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:38:47,996 p=28951 u=vagrant n=ansible | TASK [web_role : Check if httpd is running on CentOS] **************************
+2023-08-04 17:38:48,014 p=28951 u=vagrant n=ansible | skipping: [web01]
+2023-08-04 17:38:48,658 p=28951 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:38:48,671 p=28951 u=vagrant n=ansible | TASK [web_role : Check if apache2 is running on Ubuntu] ************************
+2023-08-04 17:38:48,699 p=28951 u=vagrant n=ansible | skipping: [web02]
+2023-08-04 17:38:49,033 p=28951 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:38:49,047 p=28951 u=vagrant n=ansible | TASK [web_role : Copy RSA Key to VM] *******************************************
+2023-08-04 17:38:49,813 p=28951 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:38:49,830 p=28951 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:38:49,844 p=28951 u=vagrant n=ansible | TASK [web_role : Change key permission] ****************************************
+2023-08-04 17:38:50,109 p=28951 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:38:50,149 p=28951 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:38:50,165 p=28951 u=vagrant n=ansible | TASK [web_role : Update known_hosts entry for GitHub] **************************
+2023-08-04 17:38:51,804 p=28951 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:38:51,808 p=28951 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:38:51,822 p=28951 u=vagrant n=ansible | TASK [web_role : Clone git repository with webfiles] ***************************
+2023-08-04 17:38:55,827 p=28951 u=vagrant n=ansible | changed: [web02]
+2023-08-04 17:38:55,831 p=28951 u=vagrant n=ansible | changed: [web01]
+2023-08-04 17:38:55,847 p=28951 u=vagrant n=ansible | TASK [web_role : Extract webfiles] *********************************************
+2023-08-04 17:38:56,541 p=28951 u=vagrant n=ansible | changed: [web02]
+2023-08-04 17:38:56,624 p=28951 u=vagrant n=ansible | changed: [web01]
+2023-08-04 17:38:56,637 p=28951 u=vagrant n=ansible | TASK [web_role : Move webfiles to http server dir] *****************************
+2023-08-04 17:38:57,067 p=28951 u=vagrant n=ansible | ok: [web01]
+2023-08-04 17:38:57,067 p=28951 u=vagrant n=ansible | ok: [web02]
+2023-08-04 17:38:57,082 p=28951 u=vagrant n=ansible | TASK [web_role : Deleting webfiles in tmp] *************************************
+2023-08-04 17:38:57,355 p=28951 u=vagrant n=ansible | changed: [web01]
+2023-08-04 17:38:57,392 p=28951 u=vagrant n=ansible | changed: [web02]
+2023-08-04 17:38:57,443 p=28951 u=vagrant n=ansible | PLAY [Istalling docker on host and remote VM] **********************************
+2023-08-04 17:38:57,450 p=28951 u=vagrant n=ansible | TASK [Gathering Facts] *********************************************************
+2023-08-04 17:38:58,369 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:38:59,126 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:38:59,141 p=28951 u=vagrant n=ansible | TASK [docker_install : Install aptitude] ***************************************
+2023-08-04 17:39:01,428 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:01,448 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:01,456 p=28951 u=vagrant n=ansible | TASK [docker_install : Install required system packages] ***********************
+2023-08-04 17:39:03,740 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:03,742 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:03,751 p=28951 u=vagrant n=ansible | TASK [docker_install : Add Docker GPG apt Key] *********************************
+2023-08-04 17:39:04,430 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:04,454 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:04,464 p=28951 u=vagrant n=ansible | TASK [docker_install : Add Docker Repository] **********************************
+2023-08-04 17:39:05,036 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:05,063 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:05,071 p=28951 u=vagrant n=ansible | TASK [docker_install : Update apt and install docker-ce] ***********************
+2023-08-04 17:39:07,361 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:07,377 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:07,385 p=28951 u=vagrant n=ansible | TASK [docker_install : Create Docker group] ************************************
+2023-08-04 17:39:07,747 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:07,783 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:07,792 p=28951 u=vagrant n=ansible | TASK [docker_install : Add user to Docker group] *******************************
+2023-08-04 17:39:08,208 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:08,234 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:08,243 p=28951 u=vagrant n=ansible | TASK [docker_install : Install docker Python library] **************************
+2023-08-04 17:39:10,004 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:10,024 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:10,107 p=28951 u=vagrant n=ansible | PLAY [Building image with java app] ********************************************
+2023-08-04 17:39:10,135 p=28951 u=vagrant n=ansible | TASK [Gathering Facts] *********************************************************
+2023-08-04 17:39:11,933 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:11,982 p=28951 u=vagrant n=ansible | TASK [image_build : Git repository clone] **************************************
+2023-08-04 17:39:13,333 p=28951 u=vagrant n=ansible | changed: [localhost]
+2023-08-04 17:39:13,358 p=28951 u=vagrant n=ansible | TASK [image_build : Create dircetory for app files] ****************************
+2023-08-04 17:39:13,552 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:13,577 p=28951 u=vagrant n=ansible | TASK [image_build : Move app files to desired location] ************************
+2023-08-04 17:39:14,111 p=28951 u=vagrant n=ansible | ok: [localhost] => (item=pom.xml)
+2023-08-04 17:39:16,377 p=28951 u=vagrant n=ansible | ok: [localhost] => (item=src)
+2023-08-04 17:39:16,403 p=28951 u=vagrant n=ansible | TASK [image_build : Removing repo] *********************************************
+2023-08-04 17:39:16,604 p=28951 u=vagrant n=ansible | changed: [localhost]
+2023-08-04 17:39:16,630 p=28951 u=vagrant n=ansible | TASK [image_build : Test app] **************************************************
+2023-08-04 17:39:21,771 p=28951 u=vagrant n=ansible | changed: [localhost]
+2023-08-04 17:39:21,796 p=28951 u=vagrant n=ansible | TASK [image_build : Build app] *************************************************
+2023-08-04 17:39:26,606 p=28951 u=vagrant n=ansible | changed: [localhost]
+2023-08-04 17:39:26,633 p=28951 u=vagrant n=ansible | TASK [image_build : Set image tag] *********************************************
+2023-08-04 17:39:26,647 p=28951 u=vagrant n=ansible | ok: [localhost]
+2023-08-04 17:39:26,672 p=28951 u=vagrant n=ansible | TASK [image_build : Build Docker image] ****************************************
+2023-08-04 17:39:34,429 p=28951 u=vagrant n=ansible | changed: [localhost]
+2023-08-04 17:39:34,453 p=28951 u=vagrant n=ansible | TASK [image_build : Save version to file] **************************************
+2023-08-04 17:39:34,815 p=28951 u=vagrant n=ansible | changed: [localhost]
+2023-08-04 17:39:34,847 p=28951 u=vagrant n=ansible | TASK [image_build : Upload artifact to S3 Bucket] ******************************
+2023-08-04 17:39:37,049 p=28951 u=vagrant n=ansible | [DEPRECATION WARNING]: Support for passing object key names with a leading '/' 
+has been deprecated. This feature will be removed from amazon.aws in a release 
+after 2025-12-01. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2023-08-04 17:39:37,049 p=28951 u=vagrant n=ansible | changed: [localhost]
+2023-08-04 17:39:37,125 p=28951 u=vagrant n=ansible | PLAY [Creating container with java app on remote VM] ***************************
+2023-08-04 17:39:37,135 p=28951 u=vagrant n=ansible | TASK [Gathering Facts] *********************************************************
+2023-08-04 17:39:38,071 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:38,087 p=28951 u=vagrant n=ansible | TASK [app_deploy : Set variable with version image] ****************************
+2023-08-04 17:39:38,111 p=28951 u=vagrant n=ansible | ok: [java01]
+2023-08-04 17:39:38,121 p=28951 u=vagrant n=ansible | TASK [app_deploy : Display variable] *******************************************
+2023-08-04 17:39:38,135 p=28951 u=vagrant n=ansible | ok: [java01] => {
+    "image_version": "20230804T173910441660"
+}
+2023-08-04 17:39:38,144 p=28951 u=vagrant n=ansible | TASK [app_deploy : Pull an image] **********************************************
+2023-08-04 17:39:40,719 p=28951 u=vagrant n=ansible | changed: [java01]
+2023-08-04 17:39:40,728 p=28951 u=vagrant n=ansible | TASK [app_deploy : Run a container] ********************************************
+2023-08-04 17:39:41,685 p=28951 u=vagrant n=ansible | changed: [java01] => (item=1)
+2023-08-04 17:39:42,355 p=28951 u=vagrant n=ansible | changed: [java01] => (item=2)
+2023-08-04 17:39:43,032 p=28951 u=vagrant n=ansible | changed: [java01] => (item=3)
+2023-08-04 17:39:43,699 p=28951 u=vagrant n=ansible | changed: [java01] => (item=4)
+2023-08-04 17:39:43,732 p=28951 u=vagrant n=ansible | PLAY RECAP *********************************************************************
+2023-08-04 17:39:43,732 p=28951 u=vagrant n=ansible | java01                     : ok=14   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-08-04 17:39:43,733 p=28951 u=vagrant n=ansible | localhost                  : ok=20   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-08-04 17:39:43,733 p=28951 u=vagrant n=ansible | web01                      : ok=11   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2023-08-04 17:39:43,733 p=28951 u=vagrant n=ansible | web02                      : ok=11   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   

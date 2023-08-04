@@ -1,7 +1,7 @@
 ---
 - name: Set variable with version image
   set_fact:
-          image_version: "{{ lookup('file', '/home/vagrant/ansible/roles/image_build/vars/image_version.txt') }}"
+          image_version: "{{ lookup('file', '/home/vagrant/DevOps-projects/ansible/roles/image_build/vars/image_version.txt') }}"
 
 - name: Display variable
   debug:

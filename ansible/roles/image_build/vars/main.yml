@@ -1,5 +1,5 @@
 ---
-role_dir: /home/vagrant/ansible/roles/image_build
+role_dir: /home/vagrant/DevOps-projects/ansible/roles/image_build
 version_number: 0
 version_string: ans
 repo_url: https://github.com/jenkins-docs/simple-java-maven-app.git

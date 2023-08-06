@@ -173,7 +173,7 @@ Instructions are installing and configuring Docker Engine on local machine.
 
 - Role "image_build"
 
-First, the [github repository](https://github.com/jenkins-docs/simple-java-maven-app) with simple java application is downloaded. The application is tested and with success tests its built. After that with built application, the Docker image is built using Dockerfile in `files` directory. The last step is to upload artifact to S3 Bucket. The credentials to IAM Role are stored in ansible vault. To later add a proper version of the Docker image on an external machine, the last tag of the image is stored in the `image_version.txt` file.
+First, the [github repository](https://github.com/jenkins-docs/simple-java-maven-app) with simple java application is downloaded. The application is tested and with successful tests it is built. After that with ready application, the Docker image is built using Dockerfile in `files` directory. The last step is to upload artifact to S3 Bucket. The credentials to IAM Role are stored in ansible vault. To later add a proper version of the Docker image on an external machine, the last tag of the image is stored in the `image_version.txt` file.
 
 - Role "app_deploy"
 

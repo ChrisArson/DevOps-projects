@@ -69,11 +69,12 @@ Script `deploy_vm.sh` copies and executes `vm/init.sh` on virtual machines using
 <a name="jdm-intro"></a>
 ### 2.1 Introduction
 
+Project directory: `jenkins-docker-maven/`
+
 This project provides a practical example of using Jenkins to automate the tests, build and deployment of image with java application within a Docker container. As a result there will be image on [dockerhub](https://hub.docker.com/r/chrisarson/jdm-project) with tested and built java application. Java application that I used in this project comes from https://github.com/jenkins-docs/simple-java-maven-app. 
 
 Project is built on the contenaraized Jenkins image with Docker installed on it. The Jenkins data dir is attached to the host volume for backup purpose, but its outside the version control.
 
-Project directory: `jenkins-docker-maven/`
 
 ---
 
@@ -131,10 +132,9 @@ Deployment is done by using plugin SSH Agent. Script `vm/init.sh` is copied and 
 <a name="ans-intro"></a>
 ### 3.1 Introduction
 
-This projects provides practical example of using Ansible to prepare an Apache server with the latest web files on remote machines. It also automate the tests, build and deployment of image with java application within Docker container. In first part playbook will download extract and deploy webfiles data to two virtual machines with different Linux distribution. The second part of playbook is automation around java application. As a result there will be an image on [dockerhub](https://hub.docker.com/r/chrisarson/ans-project) with tested and built java application. Image is going to be pulled and run on remote virtual machine. Java application that I used in this project comes from https://github.com/jenkins-docs/simple-java-maven-app. 
-
 Project directory: `ansible/`
 
+This projects provides practical example of using Ansible to prepare an Apache server with the latest web files on remote machines. It also automate the tests, build and deployment of image with java application within Docker container. In first part playbook will download extract and deploy webfiles data to two virtual machines with different Linux distribution. The second part of playbook is automation around java application. As a result there will be an image on [dockerhub](https://hub.docker.com/r/chrisarson/ans-project) with tested and built java application. Image is going to be pulled and run on remote virtual machine. Java application that I used in this project comes from https://github.com/jenkins-docs/simple-java-maven-app. 
 
 ---
 

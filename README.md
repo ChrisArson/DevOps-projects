@@ -11,9 +11,9 @@ This repository contains some of the projects I've been preparing while learning
 	* [2.2 Directory structure](#jdm-dir)
 	* [2.3 Flow of execution](#jdm-flow)
 * [3. Ansible](#ans)
-	* [2.1 Introduction](#ans-intro)
-	* [2.2 Directory structure](#ans-dir)
-	* [2.3 Flow of execution](#ans-flow)
+	* [3.1 Introduction](#ans-intro)
+	* [3.2 Directory structure](#ans-dir)
+	* [3.3 Flow of execution](#ans-flow)
 
 ---
 <a name="jda"></a>

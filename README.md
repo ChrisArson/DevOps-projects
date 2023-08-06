@@ -131,7 +131,7 @@ Deployment is done by using plugin SSH Agent. Script `vm/init.sh` is copied and 
 <a name="ans-intro"></a>
 ### 3.1 Introduction
 
-This projects provides practical example of using Ansible to prepare an Apache server with the latest web files on remote machines. It also automate the tests, build and deployment of image with java application within Docker container. In first part playbook will download extract and deploy webfiles data to two virtual machines with different Linux distribution. The second part of playbook is automation around java application. As a result there will be an image on [dockerhub](https://hub.docker.com/r/chrisarson/ans-project) with tested and built java application. Java application that I used in this project comes from https://github.com/jenkins-docs/simple-java-maven-app. 
+This projects provides practical example of using Ansible to prepare an Apache server with the latest web files on remote machines. It also automate the tests, build and deployment of image with java application within Docker container. In first part playbook will download extract and deploy webfiles data to two virtual machines with different Linux distribution. The second part of playbook is automation around java application. As a result there will be an image on [dockerhub](https://hub.docker.com/r/chrisarson/ans-project) with tested and built java application. Image is going to be pulled and run on remote virtual machine. Java application that I used in this project comes from https://github.com/jenkins-docs/simple-java-maven-app. 
 
 Project directory: `ansible/`
 
@@ -165,11 +165,16 @@ Folder with ansible roles. All of them are described in [3.3 Flow of execution](
 
 - Role "web_role"
 
+First step is installing necessary tools depending on Linux distribution and checking is the web server service currently running, if not the handlers will start them. After that instructions copies RSA key with proper permissions to get access to private repository on github to download webfiles that web server are going to use.
 
 - Role "docker_install"
 
+Instructions are installing and configuring Docker Engine on local machine.
 
 - Role "image_build"
 
+First, the [github repository](https://github.com/jenkins-docs/simple-java-maven-app) with simple java application is downloaded. The application is tested and with success tests its built. After that with built application, the Docker image is built using Dockerfile in `files` directory. The last step is to upload artifact to S3 Bucket. The credentials to IAM Role are stored in ansible vault. To later add a proper version of the Docker image on an external machine, the last tag of the image is stored in the `image_version.txt` file.
 
 - Role "app_deploy"
+
+Instructions set the variable with latest image tag, pull the image and run it with Docker container on remote virtual machine.

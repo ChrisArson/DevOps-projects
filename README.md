@@ -14,10 +14,10 @@ This repository contains some of the projects I've been preparing while learning
 	* [3.1 Introduction](#ans-intro)
 	* [3.2 Directory structure](#ans-dir)
 	* [3.3 Flow of execution](#ans-flow)
-* [3. Ansible](#ans)
-	* [3.1 Introduction](#ans-intro)
-	* [3.2 Directory structure](#ans-dir)
-	* [3.3 Flow of execution](#ans-flow) 
+* [4. Terraform Kubernetes](#terra)
+	* [4.1 Introduction](#terra-intro)
+	* [4.2 Directory structure](#terra)
+	* [4.3 Flow of execution](#terra) 
 
 ---
 <a name="jda"></a>
@@ -185,9 +185,9 @@ Instructions set the variable with latest image tag, pull the image and run it w
 
 
 ---
-<a name="jda"></a>
+<a name="terra"></a>
 ## 4. Terraform Kubernetes
-<a name="jda-intro"></a>
+<a name="terra-intro"></a>
 ### 4.1 Introduction
 
 Project directory: `terraform-kubernetes/`

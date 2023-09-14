@@ -14,6 +14,8 @@ This repository contains some of the projects I've been preparing while learning
 	* [3.1 Introduction](#ans-intro)
 	* [3.2 Directory structure](#ans-dir)
 	* [3.3 Flow of execution](#ans-flow)
+* 3. Terraform Kubernetes
+
 
 ---
 <a name="jda"></a>
@@ -178,3 +180,14 @@ First, the [github repository](https://github.com/jenkins-docs/simple-java-maven
 - Role "app_deploy"
 
 Instructions set the variable with latest image tag, pull the image and run it with Docker container on remote virtual machine.
+
+
+---
+<a name="jda"></a>
+## 4. Terraform Kubernetes
+<a name="jda-intro"></a>
+### 4.1 Introduction
+
+Project directory: `terraform-kubernetes/`
+
+Work in progess..

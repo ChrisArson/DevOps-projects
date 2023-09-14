@@ -14,8 +14,10 @@ This repository contains some of the projects I've been preparing while learning
 	* [3.1 Introduction](#ans-intro)
 	* [3.2 Directory structure](#ans-dir)
 	* [3.3 Flow of execution](#ans-flow)
-* 3. Terraform Kubernetes
-
+* [3. Ansible](#ans)
+	* [3.1 Introduction](#ans-intro)
+	* [3.2 Directory structure](#ans-dir)
+	* [3.3 Flow of execution](#ans-flow) 
 
 ---
 <a name="jda"></a>

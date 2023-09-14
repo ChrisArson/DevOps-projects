@@ -2,3 +2,9 @@ jenkins-docker-apache/jenkins_backup_data
 jenkins-docker-apache/data/id_rsa
 jenkins-docker-maven/jenkins_backup_data
 jenkins-docker-maven/data/id_rsa
+terraform-kubernetes/terraform/terraform.tfstate
+terraform-kubernetes/terraform/terraform.tfstate.backup
+terraform-kubernetes/terraform/data/id_rsa
+terraform-kubernetes/terraform/data/id_rsa.pub
+terraform-kubernetes/terraform/.terraform
+terraform-kubernetes/terraform/.terraform.lock.hcl

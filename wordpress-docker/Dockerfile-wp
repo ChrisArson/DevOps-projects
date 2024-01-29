@@ -1,0 +1,41 @@
+FROM ubuntu:latest
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get install -y \
+        apache2 \
+        ghostscript \
+        libapache2-mod-php \
+        mysql-server \
+        php \
+        php-bcmath \
+        php-curl \
+        php-imagick \
+        php-intl \
+        php-json \
+        php-mbstring \
+        php-mysql \
+        php-xml \
+        php-zip \
+        curl
+
+RUN mkdir -p /srv/www \
+        && chown www-data: /srv/www \
+        && curl -o /tmp/latest.tar.gz https://wordpress.org/latest.tar.gz \
+        && tar -zxvf /tmp/latest.tar.gz -C /srv/www
+
+COPY wp-resources /tmp/resources
+RUN mv /tmp/resources/wordpress.conf /etc/apache2/sites-available/wordpress.conf \
+    && mv /tmp/resources/ssl/wp.crt /srv/www/wordpress/wp.crt \
+    && mv /tmp/resources/ssl/wp.key /srv/www/wordpress/wp.key
+
+RUN a2ensite wordpress \
+        && a2enmod rewrite \
+        && a2dissite 000-default \
+        && a2enmod ssl
+
+RUN chmod +x /tmp/resources/conf-wp.sh \
+	&& /tmp/resources/conf-wp.sh
+
+EXPOSE 80 443
+CMD ["apache2ctl", "-D", "FOREGROUND"]
